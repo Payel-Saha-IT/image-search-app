@@ -7,7 +7,7 @@ const Navbar=()=>{
     const [img,setImg]=useState("");
     const [link,setLink]=useState([]);
     const[err,setErr]=useState(null);
-
+    const [searched, setSearched] = useState(false); 
     const InputEvent=(event)=>{
         console.log(event.target.value);
         setSname(event.target.value);
@@ -17,10 +17,12 @@ const Navbar=()=>{
     const FetchImage=()=>{
         setImg(sname);
         setSname("");
+        setSearched(true);
     }
 
     useEffect(()=>{
         setErr("");
+       
         axios.get(`https://api.unsplash.com/search/collections?page=1&query=${img}&client_id=aiy_EnF0S6sMAHFX4XgVoJHIx2t95dy9C_KXEIq_c64`).then(
             (response)=>{
                 console.log(response.data.results[1]);
@@ -54,9 +56,10 @@ const Navbar=()=>{
                 {err!=="" ? <h2>{err}</h2>:
 
                    
-                   
+               (searched && link.length === 0)? <h2>No images found</h2> :
                         <div className="img-container">
                         {
+                           
                             link.map((value, index) => {
                                 return (
                                     

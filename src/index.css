@@ -32,8 +32,4 @@ h2{
 
   
 
-  @media (max-width: 768px) {
-    img {
-      max-width: 200px; /* Adjust maximum width for smaller screens */
-    }
-  }
+  
